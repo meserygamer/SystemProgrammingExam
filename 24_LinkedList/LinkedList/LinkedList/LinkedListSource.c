@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+typedef struct ListElem
+{
+	int number;
+	struct ListElem* nextElem;
+} ListElem;
+
+
+ListElem* CreateRandomLinkedList(unsigned int NumberNode)
+{
+	srand(time(NULL));
+	if (NumberNode == 0) return NULL;
+	ListElem* HEAD = calloc(1, sizeof(ListElem));
+	HEAD->number = rand();
+	HEAD->nextElem = NULL;
+	ListElem* MOVEDHEAD = HEAD;
+	for (int i = 1; i < NumberNode; i++)
+	{
+		MOVEDHEAD->nextElem = calloc(1, sizeof(ListElem));
+		MOVEDHEAD = MOVEDHEAD->nextElem;
+		MOVEDHEAD->number = rand();
+		MOVEDHEAD->nextElem = NULL;
+	}
+	return HEAD;
+}
+
+void ShowAllLinkedListElems(ListElem* HEAD)
+{
+	while(HEAD != NULL)
+	{
+		printf("%d ", HEAD->number);
+		HEAD = HEAD->nextElem;
+	}
+}
+
+ListElem* FindSmallestLinkedListElem(ListElem* HEAD)
+{
+	ListElem* SmallestElem = HEAD;
+	while (HEAD != NULL)
+	{
+		if (HEAD->number < SmallestElem->number)
+		{
+			SmallestElem = HEAD;
+		}
+		HEAD = HEAD->nextElem;
+	}
+	return SmallestElem;
+}
+
+ListElem* FindBigestLinkedListElem(ListElem* HEAD)
+{
+	ListElem* BigestElem = HEAD;
+	while (HEAD != NULL)
+	{
+		if (HEAD->number > BigestElem->number)
+		{
+			BigestElem = HEAD;
+		}
+		HEAD = HEAD->nextElem;
+	}
+	return BigestElem;
+}
+
+int main()
+{
+	system("chcp 1251>slc");
+	ListElem* List = CreateRandomLinkedList(5);
+	ShowAllLinkedListElems(List);
+	if (List == NULL) return -1;
+	printf("\nСамый маленький элемент %d", FindSmallestLinkedListElem(List)->number);
+	printf("\nСамый большой элемент %d", FindBigestLinkedListElem(List)->number);
+}
