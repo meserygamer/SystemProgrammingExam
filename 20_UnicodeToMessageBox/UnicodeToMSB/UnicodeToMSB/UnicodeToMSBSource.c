@@ -1,0 +1,16 @@
+#include <Windows.h>
+#include <stdio.h>
+
+#define PATH L"Message.txt"
+#define BUFFSIZE 512
+
+int main() //В этом задании используется UNICODE в зависимости от кодировки UTF8 или UTF16 используйте разные функции и буфферы
+		   //Так как мой файл имеет кодировку UTF16 LE, то я использовал тип wchar_t и функции с W, если у вас UTF8 или любая 8 битная кодировка,
+		   //используйте char и функции с A
+{
+	HANDLE file = CreateFileW(PATH, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+	wchar_t* buffer = calloc(512, sizeof(wchar_t));
+	int* readedBytes = malloc(sizeof(int));
+	BOOL isReaded = ReadFile(file, buffer, 512 * sizeof(wchar_t), readedBytes, NULL);
+	MessageBoxW(NULL, buffer, L"Текст из файла", MB_OK);
+}
