@@ -1,0 +1,2 @@
+gcc -fPIC Library.c -shared -o Library.so Для создания .so(Динамической библиотеки) из .c файла
+gcc Application.c -o Application -ldl Для создания программы с динамической библиотекой в конце добавляем -ldl

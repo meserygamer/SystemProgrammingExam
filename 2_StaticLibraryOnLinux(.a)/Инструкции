@@ -1,0 +1,8 @@
+gcc -c Library.c Library.o Превращение си файла в объектный модуль
+ar rc libtest.a Library.o Помещение модуля в архив (Обязательно начинать с lib!!!)
+ranlib LibraryStatic.a Индексация содержимого (Необязательно)
+Для сборки есть два варианта:
+gcc -o result Application.c -L . -ltest
+или
+gcc -o result Application.c libtest.a
+ДОБАВЛЯЙТЕ ПРОТОТИПЫ В НАЧАЛЕ В ПРОГРАММУ КУДА ИМПОРТИРУЕТЕ БИБЛИОТЕКУ!!! (Если не работает не добавляйте)
