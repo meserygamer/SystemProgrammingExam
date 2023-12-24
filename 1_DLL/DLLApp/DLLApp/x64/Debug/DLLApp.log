@@ -1,0 +1,6 @@
+﻿  DLLAppSource.c
+C:\Users\kiril\OneDrive\Рабочий стол\SystemProgrammingExam\1_DLL\DLLApp\DLLApp\DLLAppSource.c(11,7): warning C4113: "FARPROC" отличается в списках параметров от "double (__cdecl *)(double,double)"
+C:\Users\kiril\OneDrive\Рабочий стол\SystemProgrammingExam\1_DLL\DLLApp\DLLApp\DLLAppSource.c(11,7): warning C4133: =: несовместимые типы - из "FARPROC" в "double (__cdecl *)(double,double)"
+C:\Users\kiril\OneDrive\Рабочий стол\SystemProgrammingExam\1_DLL\DLLApp\DLLApp\DLLAppSource.c(12,8): warning C4113: "FARPROC" отличается в списках параметров от "double (__cdecl *)(double,double)"
+C:\Users\kiril\OneDrive\Рабочий стол\SystemProgrammingExam\1_DLL\DLLApp\DLLApp\DLLAppSource.c(12,8): warning C4133: =: несовместимые типы - из "FARPROC" в "double (__cdecl *)(double,double)"
+  DLLApp.vcxproj -> C:\Users\kiril\OneDrive\Рабочий стол\SystemProgrammingExam\1_DLL\DLLApp\x64\Debug\DLLApp.exe
