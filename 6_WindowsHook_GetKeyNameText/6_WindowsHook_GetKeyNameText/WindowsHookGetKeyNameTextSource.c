@@ -6,12 +6,9 @@ LRESULT CALLBACK KeyBoardCallBack(int code, WPARAM wParam, LPARAM lParam)
 	PKBDLLHOOKSTRUCT HookData = (PKBDLLHOOKSTRUCT)lParam;
 	if (code == HC_ACTION && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
 	{
-		//GetForegroundWindow возвращает дескриптор активного в данный момент окна
-		//GetWindowThreadProcessId возвращает ID данного процесса
-		//GetKeyboardLayout возвращает раскладку клавиатуры, используемую в этом процессе
-		DWORD iKey = MapVirtualKeyW(HookData->vkCode, NULL) << 16;
+		DWORD iKey = MapVirtualKeyW(HookData->vkCode, NULL) << 16; //Виртуальный код клавишы
 		if (!(HookData->vkCode <= 1 << 5)) // 32 (т.к. первые 32 символа являются не печатными)
-			iKey |= 0x1 << 24; //Задаём истину для 24 бита (|= - побитовое присваивание a|= b эквивалентно a = a|b)
+			iKey |= 0x1 << 24; //Задаём истину для 24 бита
 		wchar_t* buffer = calloc(256, sizeof(wchar_t));
 		GetKeyNameTextW(iKey, buffer, 256);
 		MessageBox(0, buffer, L"Нажали на клавишу!", MB_OK);
