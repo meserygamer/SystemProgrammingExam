@@ -1,0 +1,17 @@
+#include <Windows.h>
+#include <stdio.h>
+
+#define MESSAGE L"Hello buffer, I'm Kirill!" //Юникод строка с сообщением помещаемым в буффер
+
+int main()
+{
+	int MessageLen = wcslen(MESSAGE) + 1; //Определяем длинну в юникоде
+	HGLOBAL MemoryDesc = GlobalAlloc(GMEM_MOVEABLE, MessageLen * sizeof(wchar_t)); //Глобально выделяем себе памяти
+	memcpy(GlobalLock(MemoryDesc), MESSAGE, MessageLen * sizeof(wchar_t)); //Копируем строку
+	GlobalUnlock(MemoryDesc); //Делаем доступным участок памяти для других
+	OpenClipboard(0); //Открываем буфер
+	EmptyClipboard(); //Очищаем
+	SetClipboardData(CF_UNICODETEXT, MemoryDesc); //Заменяем данные на наши
+	CloseClipboard(); //Закрываем данные
+	return 0;
+}
