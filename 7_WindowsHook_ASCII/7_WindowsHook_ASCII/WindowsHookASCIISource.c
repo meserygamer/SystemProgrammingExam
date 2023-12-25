@@ -9,7 +9,7 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
         int iKey = MapVirtualKeyA(hHook->vkCode, NULL);//получение кода клавиши
         wchar_t code[256];
         wsprintfW(code, L"%d", iKey);
-        MessageBox(NULL, code, L"Key Pressed", MB_OK);
+        MessageBox(NULL, code, L"Ќажали клавишу!", MB_OK);
     }
     return CallNextHookEx(NULL, nCode, wParam, lParam);
 }
