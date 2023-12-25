@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <Windows.h>
+
+int main()
+{
+	char* buffer = calloc(256, sizeof(char));
+	system("chcp 1251>nul");
+	HANDLE pipeHandle;
+	while (TRUE)
+	{
+		pipeHandle = CreateNamedPipeA("\\\\.\\pipe\\MyTestPipe"
+			, PIPE_ACCESS_DUPLEX
+			, PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE | PIPE_WAIT
+			, PIPE_UNLIMITED_INSTANCES
+			, 256
+			, 256
+			, INFINITE
+			, NULL);
+		ConnectNamedPipe(pipeHandle, NULL);
+		ReadFile(pipeHandle, buffer, 256, NULL, NULL);
+		printf("Сообщение от клиента: %s\n", buffer);
+		WriteFile(pipeHandle, "Сообщение принято!", 35, NULL, NULL);
+		CloseHandle(pipeHandle);
+	}
+}
