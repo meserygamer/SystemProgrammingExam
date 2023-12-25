@@ -1,0 +1,29 @@
+#include <Windows.h>
+#include <stdio.h>
+
+int main()
+{
+	HKEY key = NULL;
+	if (RegOpenKeyW(HKEY_CURRENT_USER, NULL, &key) != ERROR_SUCCESS)
+	{
+		return -1;
+	}
+	HKEY My_Key = NULL;
+	if (RegCreateKeyW(key, L"DWORD_TEST", &My_Key) != ERROR_SUCCESS)
+	{
+		return -1;
+	}
+	int Value = 42;
+	if (RegSetValueExW(My_Key, L"DWORD_T", 0, REG_DWORD, &Value, sizeof(int)) != ERROR_SUCCESS)
+	{
+		return -1;
+	}
+	LPDWORD number = calloc(1, sizeof(DWORD));
+	DWORD size = sizeof(DWORD);
+	if (RegGetValueW(My_Key, NULL, L"DWORD_T", RRF_RT_DWORD, NULL, number, &size) == ERROR_SUCCESS)
+	{
+		WCHAR* string = calloc(256, sizeof(WCHAR));
+		wsprintfW(string, L"Число - %d", *number);
+		MessageBoxW(0, string, L"Значение в параметре", MB_OK);
+	}
+}
