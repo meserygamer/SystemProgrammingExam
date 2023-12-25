@@ -15,4 +15,6 @@
 
 #include <dlfcn.h> - Для работы с динамическими .so библиотеками
 #include <unistd.h> - Основная библиотека для работы с линукс fork, close, read, write, pipe, _exit
+#include <fcntl.h> - Здесь лежит open() (Почему? я и сам не знаю)
 #include <sys/wait.h> - Для функции ожидания завершения процесса wait()
+#include <sys/stat.h> - Для создания очередей FIFO (Именованных каналов в Linux)
