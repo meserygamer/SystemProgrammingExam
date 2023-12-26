@@ -1,0 +1,10 @@
+#include <Windows.h>
+#include <stdio.h>
+
+int main()
+{
+	OpenClipboard(0); //Открываем буфер
+	wchar_t* message = (LPWSTR)GetClipboardData(CF_UNICODETEXT); //считываем Unicode строку из буфера
+	CloseClipboard(); //Закрываем
+	MessageBoxW(0, message, L"Сообщение из буфера!", MB_OK);
+}

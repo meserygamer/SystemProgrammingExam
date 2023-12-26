@@ -1,0 +1,51 @@
+#include <Windows.h>
+#include <stdio.h>
+
+BOOL isStopped = 0;
+BOOL isShowTime = 0;
+
+int Counter = 0;
+
+DWORD TimeWatcher(void* Args) //Секундомер
+{
+	while (TRUE)
+	{
+		if (isStopped)
+		{
+			Sleep(100);
+			continue;
+		}
+		isShowTime = 1;
+		Sleep(1000);
+		Counter++;
+	}
+}
+
+DWORD ShowTime(void* Args) //Поток для показа времени,
+//функция system("cls") слишком медленная и тормозит секундомер, на дистанции в минуту отставние в 3-4 секунды
+//С этим отставание 0-1 секунда на минуту
+{
+	for (;;)
+	{
+		if (isShowTime)
+		{
+			system("cls");
+			printf("%d:%d", Counter / 60, Counter % 60);
+			isShowTime = 0;
+		}
+	}
+	
+}
+
+int main()
+{
+	HANDLE TimeWatcherThread = CreateThread(NULL, 0, TimeWatcher, NULL, 0, NULL);
+	HANDLE ShowTimeThread = CreateThread(NULL, 0, ShowTime, NULL, 0, NULL);
+
+	for (;;) //Для считывания нажатия, при нажатии на enter секундомер ставится на паузу
+		//При повторном нажатии снимается с паузы
+	{
+		getchar();
+		isStopped = !isStopped;
+	}
+}
