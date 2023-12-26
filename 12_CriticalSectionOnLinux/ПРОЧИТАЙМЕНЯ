@@ -1,0 +1,2 @@
+Для создания программ с потоками в линуксе, при компиляции необходимо дописывать -pthread
+Пример gcc CriticalSectionOnLinux.c -pthread -o result
