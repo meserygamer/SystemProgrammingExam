@@ -10,6 +10,6 @@ int main(int num, char* argv[])
 	char* buffer = calloc(256, sizeof(char));
 	printf("\nПотомок:\nЧтение - %u\nЗапись - %u\n", PIPEREAD, PIPEWRITE);
 	ReadFile(PIPEREAD, buffer, 256, NULL, NULL);
-	puts(buffer);
+	printf("Я прочитал - %s\n", buffer);
 	return 5;
 }

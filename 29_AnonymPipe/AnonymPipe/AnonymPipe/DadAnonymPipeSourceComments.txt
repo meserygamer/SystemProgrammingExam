@@ -28,7 +28,7 @@ int main()
 	free(buffer);
 	int* testWritenBytes = calloc(1, sizeof(int));
 	WriteFile(WRITEPIPE, "Проверка связи в канале", 44, testWritenBytes, NULL);
-	printf("\nЯ записал - %d", *testWritenBytes);
+	printf("\nЯ записал - %s\n", "Проверка связи в канале");
 	WaitForSingleObject(PI->hProcess, INFINITE);
 	int* sonExitCode = calloc(1, sizeof(int));
 	GetExitCodeProcess(PI->hProcess, sonExitCode);
