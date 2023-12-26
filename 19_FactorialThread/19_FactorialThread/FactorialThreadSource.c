@@ -37,6 +37,7 @@ int main()
 		{
 			system("cls");
 			printf("Вычислить факториал невозможно\n");
+			continue;
 		}
 		HANDLE handle = CreateThread(NULL, 0, CallFactorialFunction, &number, 0, NULL);
 		WaitForSingleObject(handle, INFINITE);
