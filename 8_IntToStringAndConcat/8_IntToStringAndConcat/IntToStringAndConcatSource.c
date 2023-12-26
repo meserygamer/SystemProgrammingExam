@@ -79,7 +79,7 @@ char* convert(int num)
 int main()
 {
     system("chcp 65001>nul");
-    double n = -2;
+    double n = 180;
     char* newnum = convert(n);
     puts(newnum);
     char* newstr = cat(HELLO, WORLD);
